@@ -1,3 +1,15 @@
 286e44,::1,GET,https://localhost:8000/product,1674566771,1970ca,404
 1970ca,::1,GET,https://localhost:8000/product,1674566771,,404
 129cbe,::1,GET,https://localhost:8000/pessoa,1674566775,,200
+1922f2,::1,GET,https://localhost:8000/product,1674582097,e55ef9,404
+e55ef9,::1,GET,https://localhost:8000/product,1674582097,,404
+f3935e,::1,GET,https://localhost:8000/product,1674582109,c52923,404
+c52923,::1,GET,https://localhost:8000/product,1674582109,,404
+9d26f0,::1,GET,https://localhost:8000/product,1674582122,b72379,404
+b72379,::1,GET,https://localhost:8000/product,1674582122,,404
+7cea9c,::1,GET,https://localhost:8000/product,1674582355,eb40eb,404
+eb40eb,::1,GET,https://localhost:8000/product,1674582355,,404
+cf2bc6,::1,GET,https://localhost:8000/product,1674582837,a9c31d,404
+a9c31d,::1,GET,https://localhost:8000/product,1674582837,,404
+9e597c,::1,GET,https://localhost:8000/pessoa,1674582849,,200
+4e01eb,::1,GET,https://localhost:8000/pessoa,1674582900,,200
