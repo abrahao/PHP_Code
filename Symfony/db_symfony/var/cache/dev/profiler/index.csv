@@ -1,0 +1,3 @@
+286e44,::1,GET,https://localhost:8000/product,1674566771,1970ca,404
+1970ca,::1,GET,https://localhost:8000/product,1674566771,,404
+129cbe,::1,GET,https://localhost:8000/pessoa,1674566775,,200
