@@ -1,3 +1,7 @@
 76ce9e,::1,GET,https://localhost:8000/categoria,1674669467,8eb880,404
 8eb880,::1,GET,https://localhost:8000/categoria,1674669467,,404
 f78c33,::1,GET,https://localhost:8000/,1674669477,,200
+77c6bb,::1,GET,https://localhost:8000/product,1674670425,71e590,404
+71e590,::1,GET,https://localhost:8000/product,1674670425,,404
+9eb959,::1,GET,https://localhost:8000/,1674670425,,404
+cbe478,::1,GET,https://localhost:8000/produto,1674670428,,200
