@@ -11,7 +11,7 @@
                 <div>{{ erro.messageKey|trans(erro.messageData, 'security') }}</div>
             {% endif %}
             <form action="{{ path('login') }}" method="POST">
-                <input type="hidden" name="_target_path" value="/produto" />
+                <input type="hidden" name="_target_path" value="/home" />
 
                 <label for="username" class="form-label">E-mail</label>
                 <input type="text" class="form-control" id="username" name="_username" value="{{ lastUsername }}" />
