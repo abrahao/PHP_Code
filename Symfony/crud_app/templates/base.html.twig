@@ -31,6 +31,9 @@
                 {% endif %}
             </div>
         </nav>
+        {% if is_granted('ROLE_USER') %}
+            <span>Usuário: {{app.user.nome}} | {{app.user.email}}  </span>
+        {% endif %}
         <div class='container'>
         {% block body %}{% endblock %}
         </div>
