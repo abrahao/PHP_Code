@@ -26,7 +26,7 @@ class ProdutoController extends AbstractController{
         $data['produtos'] = is_null($nomeproduto)
             ? $produtoRepository->findAll()
             : $produtoRepository->findProdutoByLikeNome($nomeproduto);
-        $data['nomeproduto'] = $nomeproduto;
+        $data['nomeproduto'] = $nomeproduto; 
         $data['titulo'] = 'Gerenciar produto';
 
         return $this->render('produto/index.html.twig', $data);
