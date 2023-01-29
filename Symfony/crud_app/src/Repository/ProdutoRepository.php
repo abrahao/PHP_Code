@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Produto;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\AST\WhereClause;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -37,6 +38,14 @@ class ProdutoRepository extends ServiceEntityRepository
         if ($flush) {
             $this->getEntityManager()->flush();
         }
+    }
+
+    public function findProdutoByLikeNome($nomeproduto){
+        return $this->createQueryBuilder('p')
+            ->where('p.nomeproduto LIKE :nomeproduto')
+            ->setParameter('nomeproduto', "%$nomeproduto%")
+            ->getQuery()
+            ->getResult();
     }
 
 //    /**

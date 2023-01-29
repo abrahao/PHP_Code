@@ -19,9 +19,14 @@ class ProdutoController extends AbstractController{
      * @Route("/produto", name="produto_index");
      * @IsGranted("ROLE_USER")
      */
-    public function index(ProdutoRepository $produtoRepository): Response
+    public function index(Request $request, ProdutoRepository $produtoRepository): Response
     {
-        $data['produtos'] = $produtoRepository->findAll();
+        $nomeproduto = $request->get('nome');
+
+        $data['produtos'] = is_null($nomeproduto)
+            ? $produtoRepository->findAll()
+            : $produtoRepository->findProdutoByLikeNome($nomeproduto);
+        $data['nomeproduto'] = $nomeproduto;
         $data['titulo'] = 'Gerenciar produto';
 
         return $this->render('produto/index.html.twig', $data);
