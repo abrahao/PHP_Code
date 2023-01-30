@@ -2,9 +2,9 @@
 
 use App\Core\Model;
 class Preco{
-    private $id;
-    private $primeiraHora;
-    private $demaisHoras;
+    public $id;
+    public $primeiraHora;
+    public $demaisHoras;
 
 
     public function getUltimoInserido(){
