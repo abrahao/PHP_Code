@@ -81,7 +81,7 @@ class Router{
             default: 
                 echo "Método não suportado";
                 exit;
-                break;
+            break;
         }
 
         call_user_func_array([$this->controller, $this->controllerMethod], $this->params);
