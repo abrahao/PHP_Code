@@ -20,8 +20,8 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Detalhes do aluno
-                            <a href="pessoa-create.php" class="btn btn-primary float-end">Adicionar Aluno</a>
+                        <h4>Detalhes
+                            <a href="adicionar.php" class="btn btn-primary float-end">Adicionar Pessoa</a>
                         </h4>
                     </div>
                     <div class="card-body">
@@ -47,7 +47,7 @@
                                             <tr>
                                                 <td><?= $pessoa['id']; ?></td>
                                                 <td><?= $pessoa['nome']; ?></td>
-                                                <td><?= $pessoa['idade']; ?></td>
+                                                <td><?= $pessoa['idade']; ?> anos</td>
                                                 
                                             </tr>
                                             <?php
@@ -55,7 +55,7 @@
                                     }
                                     else
                                     {
-                                        echo "<h5> Nenhum aluno cadastrado </h5>";
+                                        echo "<h5> Nenhum dado cadastrado </h5>";
                                     }
                                 ?>
                                 
