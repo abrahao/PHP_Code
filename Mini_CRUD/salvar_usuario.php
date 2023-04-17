@@ -46,7 +46,17 @@ switch ($_REQUEST["acao"]) {
 
         break;
     case 'excluir':
-        # code...
+        
+        $sql = "DELETE FROM usuarios WHERE id=".$_REQUEST['id'];
+        $res = $conn->query($sql);
+
+        if ($res == true) {
+            print "<script>alert('Usuário Excluído!')</script>";
+            print "<script>location.href='?page=listar'</script>";
+        } else {
+            print "<script>alert('erro ao Excluir')</script>";
+            print "<script>location.href='?page=cadastrar'</script>";
+        }
         break;
     default:
         # code...

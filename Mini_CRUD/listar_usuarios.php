@@ -27,7 +27,7 @@ if ($qtd > 0) {
       <td><?= $row->nascimento?></td>
       <td>
       <button type="button" class="btn btn-warning" onclick="location.href='?page=editar&id=<?= $row->id ?>'">Editar</button>
-      <button type="button" class="btn btn-danger" onclick="location.href='?page=excluir&id=<?= $row->id ?>'">Excluir</button>
+      <button type="button" class="btn btn-danger" onclick="if(confirm('Excluir Usuário?')){location.href='?page=salvar&acao=excluir&id=<?= $row->id ?>'}else{false}">Excluir</button>
       </td>
     </tr>
   </tbody>
