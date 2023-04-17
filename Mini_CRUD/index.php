@@ -13,24 +13,24 @@
 
 <body>
     <div class="container">
-        <?php include_once('./navbar.php');
-        include_once('./database/config.php');
+        <?php include_once('parts/navbar.php');
+        include_once('database/config.php');
         ?>
         <div class="row">
             <div class="col mt-5">
                 <?php
                 switch (@$_REQUEST['page']) {
                     case 'novo':
-                        include('./novo_usuario.php');
+                        include('./crud/novo_usuario.php');
                         break;
                     case 'listar':
-                        include('./listar_usuarios.php');
+                        include('./crud/listar_usuarios.php');
                         break;
                     case 'salvar':
-                        include('./salvar_usuario.php');
+                        include('./crud/salvar_usuario.php');
                         break;
                     case 'editar':
-                        include('./editar_usuario.php');
+                        include('./crud/editar_usuario.php');
                         break;
                     default:
                         print "<h1>Bem vindo</h1>";
