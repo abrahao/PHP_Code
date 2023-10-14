@@ -28,7 +28,7 @@ class TarefaDAO {
         $stmt->bindParam(":title", $tarefa->title);
         $stmt->bindParam(":description", $tarefa->description);
         
-        // Use PDO::PARAM_INT para o campo 'completed'
+        // Usar PDO::PARAM_INT para o campo 'completed'
         $stmt->bindParam(":completed", $completed, PDO::PARAM_INT);
         
         if ($stmt->execute()) {
@@ -51,7 +51,7 @@ class TarefaDAO {
         $completed = $tarefa->completed ? 1 : 0;
         $stmt->bindParam(":completed", $completed);
     
-        // Execute a consulta
+        // Executar a consulta
         if ($stmt->execute()) {
             return true;
         } else {

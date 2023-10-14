@@ -7,7 +7,7 @@ require 'tarefas/tarefaDAO.php';
 $db = new PDO("mysql:host={$host};dbname={$db_name}", $username, $password);
 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Crie uma instância do TarefaDAO
+// Criar uma instância do TarefaDAO
 $tarefaDAO = new TarefaDAO($db);
 
 // Roteamento
@@ -56,11 +56,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && preg_match('#^/api-tarefas/tarefas$#
     $tarefaId = $matches[1];
     $data = json_decode(file_get_contents("php://input"));
 
-    // Recupere a tarefa existente pelo ID
+    // Recuperar a tarefa existente pelo ID
     $tarefaExistente = $tarefaDAO->getTarefaById($tarefaId);
 
     if ($tarefaExistente) {
-        // Mantenha o ID original
+        // Manter o ID original
         $tarefa = new Tarefa($tarefaId, $data->title, $data->description, $data->completed);
 
         if ($tarefa->validate()) {
