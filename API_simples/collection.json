@@ -1,0 +1,254 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Task Management API",
+    "description": "API for managing tasks",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api-tarefas/tarefas": {
+      "get": {
+        "summary": "List all tasks",
+        "description": "Retrieve a list of all tasks.",
+        "responses": {
+          "200": {
+            "description": "List of tasks",
+            "content": {
+              "application/json": {
+                "example": []
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Acesso não autorizado."
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Create a new task",
+        "description": "Create a new task.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "example": {
+                "title": "Sample Task",
+                "description": "This is a sample task.",
+                "completed": false
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Task created successfully",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Tarefa criada com sucesso."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Dados de tarefa inválidos."
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Acesso não autorizado."
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Não foi possível criar a tarefa."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api-tarefas/tarefas/{id}": {
+      "get": {
+        "summary": "Get a task by ID",
+        "description": "Retrieve a specific task by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Task details",
+            "content": {
+              "application/json": {
+                "example": {}
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Acesso não autorizado."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content": {
+              "application/json": {
+                "example": {
+                  "message": "Tarefa não encontrada."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update a task by ID",
+        "description": "Update a specific task by ID.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ]
+      },
+      "requestBody": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "example": {
+              "title": "Updated Task",
+              "description": "This is an updated task.",
+              "completed": true
+            }
+          }
+        }
+      },
+      "responses": {
+        "200": {
+          "description": "Task updated successfully",
+          "content": {
+            "application/json": {
+              "example": {
+                "message": "Tarefa atualizada com sucesso."
+              }
+            }
+          }
+        },
+        "400": {
+          "description": "Bad Request",
+          "content": {
+            "application/json": {
+              "example": {
+                "message": "Dados de tarefa inválidos."
+              }
+            }
+          }
+        },
+        "401": {
+          "description": "Unauthorized",
+          "content": {
+            "application/json": {
+              "example": {
+                "message": "Acesso não autorizado."
+              }
+            }
+          }
+        },
+        "503": {
+          "description": "Service Unavailable",
+          "content": {
+            "application/json": {
+              "example": {
+                "message": "Não foi possível atualizar a tarefa."
+              }
+            }
+          }
+        }
+      }
+    },
+    "delete": {
+      "summary": "Delete a task by ID",
+      "description": "Delete a specific task by ID.",
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          }
+        }
+      ]
+    },
+    "responses": {
+      "200": {
+        "description": "Task deleted successfully",
+        "content": {
+          "application/json": {
+            "example": {
+              "message": "Tarefa excluída com sucesso."
+            }
+          }
+        }
+      },
+      "401": {
+        "description": "Unauthorized",
+        "content": {
+          "application/json": {
+            "example": {
+              "message": "Acesso não autorizado."
+            }
+          }
+        }
+      },
+      "503": {
+        "description": "Service Unavailable",
+        "content": {
+          "application/json": {
+            "example": {
+              "message": "Não foi possível excluir a tarefa."
+            }
+          }
+        }
+      }
+    }
+  }
+}
