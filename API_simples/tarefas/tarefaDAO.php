@@ -52,7 +52,7 @@ public function atualizarTarefa(Tarefa $tarefa) {
     $stmt->bindParam(":description", $tarefa->description);
 
     // Converter o valor de 'completed' para um inteiro (0 para false, 1 para true)
-    $completed = ($tarefa->completed == 1) ? 1 : 0;  // Converta para 1 ou 0 com base no valor da variável
+    $completed = ($tarefa->completed == 1) ? 1 : 0;  // Converter para 1 ou 0 com base no valor da variável
 
     $stmt->bindParam(":completed", $completed, PDO::PARAM_INT);
 
