@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && preg_match('#^/api-tarefas/tarefas$#
             // Criar uma nova tarefa
             $data = json_decode(file_get_contents("php://input"));
 
-            $tarefa = new Tarefa(null, $data->title, $data->description, $data->completed);
+            $tarefa = new Tarefa($tarefaId, $data->title, $data->description, (bool)$data->completed);        
 
             if ($tarefa->validate()) {
                 if ($tarefaDAO->criarTarefa($tarefa)) {
@@ -97,7 +97,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && preg_match('#^/api-tarefas/tarefas$#
         http_response_code(401);
         echo json_encode(array("message" => "Token JWT ausente."));
     }
-} elseif (preg_match('#^/api-tarefas/tarefas/(\d+)$#', $_SERVER['REQUEST_URI'], $matches) && $_SERVER['REQUEST_METHOD'] === 'PUT') {
+} // ...
+
+elseif (preg_match('#^/api-tarefas/tarefas/(\d+)$#', $_SERVER['REQUEST_URI'], $matches) && $_SERVER['REQUEST_METHOD'] === 'PUT') {
     $token = $_SERVER['HTTP_AUTHORIZATION'] ?? null;
 
     if ($token) {
@@ -108,9 +110,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && preg_match('#^/api-tarefas/tarefas$#
             $data = json_decode(file_get_contents("php://input"));
 
             // Converter o valor de 'completed' para um booleano
-            $data->completed = (strtolower($data->completed) === 'true');
+            $completed = filter_var($data->completed, FILTER_VALIDATE_BOOLEAN);
 
-            $tarefa = new Tarefa($tarefaId, $data->title, $data->description, $data->completed);
+            $tarefa = new Tarefa($tarefaId, $data->title, $data->description, $completed);
 
             if ($tarefa->validate()) {
                 if ($tarefaDAO->atualizarTarefa($tarefa)) {
@@ -131,7 +133,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && preg_match('#^/api-tarefas/tarefas$#
         http_response_code(401);
         echo json_encode(array("message" => "Token JWT ausente."));
     }
-} elseif (preg_match('#^/api-tarefas/tarefas/(\d+)$#', $_SERVER['REQUEST_URI'], $matches) && $_SERVER['REQUEST_METHOD'] === 'DELETE') {
+}
+
+ elseif (preg_match('#^/api-tarefas/tarefas/(\d+)$#', $_SERVER['REQUEST_URI'], $matches) && $_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $token = $_SERVER['HTTP_AUTHORIZATION'] ?? null;
 
     if ($token) {

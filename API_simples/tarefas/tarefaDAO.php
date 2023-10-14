@@ -1,14 +1,17 @@
 <?php
-class TarefaDAO {
+class TarefaDAO
+{
     private $conn;
     private $table_name = "tasks";
 
-    public function __construct($db) {
+    public function __construct($db)
+    {
         $this->conn = $db;
     }
 
     // Listar todas as tarefas
-    public function listarTarefas() {
+    public function listarTarefas()
+    {
         $query = "SELECT * FROM " . $this->table_name;
         $stmt = $this->conn->prepare($query);
         $stmt->execute();
@@ -16,52 +19,61 @@ class TarefaDAO {
     }
 
     // Criar uma nova tarefa
-    public function criarTarefa($tarefa) {
+    public function criarTarefa($tarefa)
+    {
         $query = "INSERT INTO " . $this->table_name . " (title, description, completed) VALUES (:title, :description, :completed)";
         $stmt = $this->conn->prepare($query);
         $tarefa->title = htmlspecialchars(strip_tags($tarefa->title));
         $tarefa->description = htmlspecialchars(strip_tags($tarefa->description));
-        
+
         // Converter o valor de 'completed' para um inteiro (0 para false, 1 para true)
         $completed = $tarefa->completed ? 1 : 0;
-        
+
         $stmt->bindParam(":title", $tarefa->title);
         $stmt->bindParam(":description", $tarefa->description);
-        
+
         // Usar PDO::PARAM_INT para o campo 'completed'
         $stmt->bindParam(":completed", $completed, PDO::PARAM_INT);
-        
+
         if ($stmt->execute()) {
             return true;
         }
         return false;
     }
-    
-    // Atualizar uma tarefa
-    public function atualizarTarefa(Tarefa $tarefa) {
-        $query = "UPDATE tasks SET title = :title, description = :description, completed = :completed WHERE id = :id";
-    
-        // Bind os parâmetros
-        $stmt = $this->conn->prepare($query);
-        $stmt->bindParam(":id", $tarefa->id);
-        $stmt->bindParam(":title", $tarefa->title);
-        $stmt->bindParam(":description", $tarefa->description);
-    
-        // Converter o valor de 'completed' para um inteiro (0 para false, 1 para true)
-        $completed = $tarefa->completed ? 1 : 0;
-        $stmt->bindParam(":completed", $completed);
-    
-        // Executar a consulta
-        if ($stmt->execute()) {
-            return true;
-        } else {
-            return false;
-        }
+
+// Atualizar uma tarefa
+public function atualizarTarefa(Tarefa $tarefa) {
+    $query = "UPDATE tasks SET title = :title, description = :description, completed = :completed WHERE id = :id";
+
+    // Bind os parâmetros
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(":id", $tarefa->id);
+    $stmt->bindParam(":title", $tarefa->title);
+    $stmt->bindParam(":description", $tarefa->description);
+
+    // Converter o valor de 'completed' para um inteiro (0 para false, 1 para true)
+    $completed = ($tarefa->completed == 1) ? 1 : 0;  // Converta para 1 ou 0 com base no valor da variável
+
+    $stmt->bindParam(":completed", $completed, PDO::PARAM_INT);
+
+    // Saídas de depuração
+    echo "ID: " . $tarefa->id . PHP_EOL;
+    echo "Title: " . $tarefa->title . PHP_EOL;
+    echo "Description: " . $tarefa->description . PHP_EOL;
+    echo "Completed: " . $completed . PHP_EOL;
+
+    // Executar a consulta
+    if ($stmt->execute()) {
+        return true;
+    } else {
+        echo "Erro ao executar a consulta." . PHP_EOL;
+        return false;
     }
-    
+}
 
     // Excluir uma tarefa por ID
-    public function excluirTarefa($id) {
+    public function excluirTarefa($id)
+    {
         $query = "DELETE FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
@@ -72,7 +84,8 @@ class TarefaDAO {
     }
 
     // Obter uma tarefa pelo ID
-    public function getTarefaById($id) {
+    public function getTarefaById($id)
+    {
         $query = "SELECT * FROM " . $this->table_name . " WHERE id = ?";
         $stmt = $this->conn->prepare($query);
         $stmt->bindParam(1, $id);
