@@ -8,3 +8,6 @@
 ### ---------- /api-tarefas/tarefas/{id} - [ GET ] Retorna uma tarefa específica ###
 ### ---------- /api-tarefas/tarefas/{id} [ PUT ] - Atualiza uma tarefa específica ###
 ### ---------- /api-tarefas/tarefas/{id} [ DELETE ] - Deleta uma tarefa específica ###
+
+### Autenticação é feita via token ###
+### Instalar o PHP-JWT via composer: composer require paragonie/sodium_compat ###

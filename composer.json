@@ -1,6 +1,7 @@
 {
     "require": {
-        "symfony/orm-pack": "^2.3"
+        "symfony/orm-pack": "^2.3",
+        "firebase/php-jwt": "^6.9"
     },
     "require-dev": {
         "symfony/maker-bundle": "^1.48"

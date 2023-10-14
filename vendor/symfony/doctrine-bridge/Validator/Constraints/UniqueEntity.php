@@ -32,11 +32,11 @@ class UniqueEntity extends Constraint
 
     public $message = 'This value is already used.';
     public $service = 'doctrine.orm.validator.unique';
-    public $em = null;
-    public $entityClass = null;
+    public $em;
+    public $entityClass;
     public $repositoryMethod = 'findBy';
     public $fields = [];
-    public $errorPath = null;
+    public $errorPath;
     public $ignoreNull = true;
 
     /**
@@ -45,7 +45,8 @@ class UniqueEntity extends Constraint
     protected static $errorNames = self::ERROR_NAMES;
 
     /**
-     * @param array|string $fields the combination of fields that must contain unique values or a set of options
+     * @param array|string      $fields     The combination of fields that must contain unique values or a set of options
+     * @param bool|array|string $ignoreNull The combination of fields that ignore null values
      */
     public function __construct(
         $fields,
@@ -55,7 +56,7 @@ class UniqueEntity extends Constraint
         string $entityClass = null,
         string $repositoryMethod = null,
         string $errorPath = null,
-        bool $ignoreNull = null,
+        bool|string|array $ignoreNull = null,
         array $groups = null,
         $payload = null,
         array $options = []
