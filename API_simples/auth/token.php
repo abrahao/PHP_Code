@@ -28,7 +28,7 @@ class AuthJWT {
             $payload = json_decode(base64_decode($tokenParts[1]), true);
             return $payload;
         } else {
-            return null; // Token é inválido
+            return null;
         }
     }
     }
